@@ -25,7 +25,7 @@ body {
     margin: 0;  
     padding: 0;  
     min-height: 100%;  
-    background-image: linear-gradient(var(--color-pink), var(--color-pink));  
+    background-color: var(--color-pink);  
 }  
 
 /* COUNTDOWN LOCK SCREEN CSS ARCHITECTURE */
@@ -218,6 +218,7 @@ body {
     font-size: 3rem;  
     flex-direction: column;  
     perspective: 1000px;  
+    align-items: center; /* Centering fix */
 }  
 .title .happy, .title .birthday{  
     position: relative;  
@@ -251,7 +252,7 @@ body {
     35%, 100%{ top: -30px; transform: rotate(0deg); }  
 }  
 
-/* ⚡ FIXED: DATE LABELS TEXT JITTER BUG AND ANIMATION REALIGNMENT */
+/* ⚡ FIXED: DATE LABELS AND CLEANED DUPLICATIONS */
 .date__of__birth, .name{  
     display: flex;  
     justify-content: space-around;  
@@ -259,13 +260,12 @@ body {
     background-color: var(--color-text-pink);  
     border-radius: 50px;  
     margin-top: 20px;  
-    font-family: "Sriracha", cursive;  
+    border: 3px solid var(--color-black);  
 }  
 .date__of__birth{  
-    border: 3px solid var(--color-black);  
     position: relative;  
     transform: translateY(-100px);  
-    z-index: -1;  
+    z-index: 1;  
     opacity: 0;  
     visibility: hidden;  
     width: 0px;  
@@ -276,38 +276,20 @@ body {
     45%{ transform: translateY(0px); opacity: 1; visibility: visible; width: 300px; height: 0px; }  
     50%,100%{ transform: translateY(0px); opacity: 1; visibility: visible; width: 300px; height: 50px; }  
 }  
+
 .name{  
-    position: absolute;  
+    position: relative; /* Fixed from absolute to maintain layout flow */
     padding: 5px 25px;  
-    bottom: -20px;  
-    border: 3px solid var(--color-black);  
     font-family: 'Dancing Script', cursive;  
     color: white;  
     z-index: 2;  
 }  
 .date__of__birth span, .name span{  
     font-weight: bold;  
-    margin: 0px 40px;  
+    margin: 0px 20px;  
 }  
-.date__of__birth span{ font-size: 1.2rem; }  
+.date__of__birth span{ font-size: 1.2rem; font-family: "Sriracha", cursive;}  
 .name span{ font-size: 1.7rem; }  
-  
-.name{  
-    display: flex;  
-    justify-content: space-around;  
-    align-items: center;  
-    background-color: var(--color-text-pink);  
-    border-radius: 50px;  
-    margin-top: 20px;  
-    position: absolute;  
-    padding: 5px 25px;  
-    bottom: -20px;  
-    border: 3px solid var(--color-black);  
-    font-family: 'Dancing Script', cursive;  
-    color: white;  
-    z-index: 2;  
-}  
-.name span{ font-size: 1.7rem; font-weight: bold; margin: 0px 40px; }  
   
 .right .box__account{  
     position: relative;  
@@ -618,6 +600,7 @@ body {
 .decorate_flower--three{ position: absolute; top: 150px; right: 235px; }  
 .smiley__icon{ position: absolute; bottom: 180px; left: 600px; }  
   
+/* 📱 RESPONSIVE MEDIA QUERIES (FIXED JITTER & POSITIONING) */
 @media screen and (max-width: 658px) {  
     .music-dish-wrapper { top: auto; bottom: 20px; left: 20px; }
     .flag__birthday .flag__left { transform: rotate(-10deg) translate(-119px,3px); }  
@@ -627,10 +610,13 @@ body {
     .title { font-size: 1.8rem; }  
     #btn__letter { margin-top: 17px; width: 240px; padding: 10px 15px; }  
     .cricle { position: absolute; top: 10px; right: -10px; }  
-    .title .hat { position: absolute; right: 10px; top: -50px !important; }  
+    
+    /* Animation scale fix for mobile hat */
+    .title .hat { position: absolute; right: 10px; top: -350px; transform: scale(0.7) rotate(-40deg); }  
+    
     .content .right .image { width: 250px; height: 250px; }  
-    .name { bottom: -10px; }  
-    .name span { font-size: 1.2rem; }  
+    .name span { font-size: 1.2rem; margin: 0 15px; }  
+    .date__of__birth span { font-size: 1rem; margin: 0 15px; }
     .right .balloon_one { top: 10px; left: -20px; }  
     .right .balloon_one img { width: 76px !important; }  
     .gallery-grid { padding: 100px 5px !important; gap: 30px !important; }  
