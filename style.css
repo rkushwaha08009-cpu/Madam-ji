@@ -253,6 +253,16 @@ body {
 
 /* ⚡ FIXED: DATE LABELS TEXT JITTER BUG AND ANIMATION REALIGNMENT */
 .date__of__birth {  
+.date__of__birth, .name{  
+    display: flex;  
+    justify-content: space-around;  
+    align-items: center;  
+    background-color: var(--color-text-pink);  
+    border-radius: 50px;  
+    margin-top: 20px;  
+    font-family: "Sriracha", cursive;  
+}  
+.date__of__birth{  
     border: 3px solid var(--color-black);  
     position: relative;  
     transform: translateY(-100px);  
@@ -260,33 +270,29 @@ body {
     opacity: 0;  
     visibility: hidden;  
     width: 0px;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
     animation: dateOfBirth 4s 4s forwards;  
 }  
 @keyframes dateOfBirth{  
     20%,40%{ width: 0px; height: 0; transform: translateY(0px); opacity: 1; visibility: visible; }  
-    45%{ transform: translateY(0px); opacity: 1; visibility: visible; width: 310px; height: 0px; }  
-    50%,100%{ transform: translateY(0px); opacity: 1; visibility: visible; width: 310px; height: 55px; }  
+    45%{ transform: translateY(0px); opacity: 1; visibility: visible; width: 300px; height: 0px; }  
+    50%,100%{ transform: translateY(0px); opacity: 1; visibility: visible; width: 300px; height: 50px; }  
 }  
-.date__of__birth span { 
-    font-size: 1.25rem; 
-    font-weight: bold; 
-    font-family: "Sriracha", cursive;
-    color: white;
-    display: inline-block;
-    letter-spacing: 0.5px;
-    text-align: center;
-    min-width: 140px; 
+.name{  
+    position: absolute;  
+    padding: 5px 25px;  
+    bottom: -20px;  
+    border: 3px solid var(--color-black);  
+    font-family: 'Dancing Script', cursive;  
+    color: white;  
+    z-index: 2;  
 }  
-.date__of__birth i {
-    margin: 0 12px;
-    font-size: 1rem;
-}
-
+.date__of__birth span, .name span{  
+    font-weight: bold;  
+    margin: 0px 40px;  
+}  
+.date__of__birth span{ font-size: 1.2rem; }  
+.name span{ font-size: 1.7rem; }  
+  
 .name{  
     display: flex;  
     justify-content: space-around;  
